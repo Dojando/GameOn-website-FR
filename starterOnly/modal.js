@@ -53,16 +53,16 @@ function CloseModal() {
 const regex_formulaire = {
   prenom: /^[A-Z-]{2,100}$/i,
   nom: /^[A-Z-]{2,100}$/i,
-  adresse: /^[A-Z-\d ]{1,100}$/i,
-  ville: /^[A-Z- ]{1,100}$/i,
   email: /^([a-z\d\.-]+)@([a-z\d-]+)\.([a-z]+){2,4}$/i,
 }
 
 // Verification des champs et affichage d'une erreur si invalide
 buttonSubmit.addEventListener('click', function(e) {
+  let i = true;
   if (regex_formulaire.prenom.test(champPrenom.value) === false) {
     e.preventDefault;
     erreurPrenom.style.display = "block";
+    i = false;
   } else {
     erreurPrenom.style.display = "none";
   }
@@ -70,6 +70,7 @@ buttonSubmit.addEventListener('click', function(e) {
   if (regex_formulaire.nom.test(champNom.value) === false) {
     e.preventDefault;
     erreurNom.style.display = "block";
+    i = false;
   } else {
     erreurNom.style.display = "none";
   }
@@ -77,6 +78,7 @@ buttonSubmit.addEventListener('click', function(e) {
   if (regex_formulaire.email.test(champEmail.value) === false) {
     e.preventDefault;
     erreurEmail.style.display = "block";
+    i = false;
   } else {
     erreurEmail.style.display = "none";
   }
@@ -84,6 +86,7 @@ buttonSubmit.addEventListener('click', function(e) {
   if (champNaissance.value.length === 0) {
     e.preventDefault;
     erreurNaissance.style.display = "block";
+    i = false;
   } else {
     erreurNaissance.style.display = "none";
   }
@@ -91,15 +94,21 @@ buttonSubmit.addEventListener('click', function(e) {
   if (champTournois.value < 1) {
     e.preventDefault;
     erreurTournois.style.display = "block";
+    i = false;
   } else {
     erreurTournois.style.display = "none";
   }
 
-  console.log(checkboxCondition.checked)
   if (checkboxCondition.checked === false) {
     e.preventDefault;
     erreurCondition.style.display = "block";
+    i = false;
   } else {
     erreurCondition.style.display = "none";
+  }
+
+  // Si tous les champs sont valide, un message de validation s'affiche
+  if (i === true) {
+    window.alert("Merci ! Votre réservation a été reçue.");
   }
 })
