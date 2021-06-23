@@ -12,6 +12,23 @@ const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
 const modalClose = document.querySelectorAll(".close");
+const buttonSubmit = document.getElementById('buttonSubmit');
+
+//Recuperation de chaque champs du formulaire
+const champPrenom = document.getElementById('first');
+const champNom = document.getElementById('last');
+const champEmail = document.getElementById('email');
+const champNaissance = document.getElementById('birthdate');
+const champTournois = document.getElementById('quantity');
+const checkboxCondition = document.getElementById('checkbox1');
+
+//Recuperation de chaque messages d'erreur des champs du formulaire
+const erreurPrenom = document.getElementById('erreurPrenom');
+const erreurNom = document.getElementById('erreurNom');
+const erreurEmail = document.getElementById('erreurEmail');
+const erreurNaissance = document.getElementById('erreurNaissance');
+const erreurTournois = document.getElementById('erreurTournois');
+const erreurCondition = document.getElementById('erreurCondition');
 
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
@@ -30,3 +47,59 @@ function CloseModal() {
 }
 
 
+// script pour la validation du formulaire
+
+// création des règles regex
+const regex_formulaire = {
+  prenom: /^[A-Z-]{2,100}$/i,
+  nom: /^[A-Z-]{2,100}$/i,
+  adresse: /^[A-Z-\d ]{1,100}$/i,
+  ville: /^[A-Z- ]{1,100}$/i,
+  email: /^([a-z\d\.-]+)@([a-z\d-]+)\.([a-z]+){2,4}$/i,
+}
+
+// Verification des champs et affichage d'une erreur si invalide
+buttonSubmit.addEventListener('click', function(e) {
+  if (regex_formulaire.prenom.test(champPrenom.value) === false) {
+    e.preventDefault;
+    erreurPrenom.style.display = "block";
+  } else {
+    erreurPrenom.style.display = "none";
+  }
+
+  if (regex_formulaire.nom.test(champNom.value) === false) {
+    e.preventDefault;
+    erreurNom.style.display = "block";
+  } else {
+    erreurNom.style.display = "none";
+  }
+
+  if (regex_formulaire.email.test(champEmail.value) === false) {
+    e.preventDefault;
+    erreurEmail.style.display = "block";
+  } else {
+    erreurEmail.style.display = "none";
+  }
+
+  if (champNaissance.value.length === 0) {
+    e.preventDefault;
+    erreurNaissance.style.display = "block";
+  } else {
+    erreurNaissance.style.display = "none";
+  }
+
+  if (champTournois.value < 1) {
+    e.preventDefault;
+    erreurTournois.style.display = "block";
+  } else {
+    erreurTournois.style.display = "none";
+  }
+
+  console.log(checkboxCondition.checked)
+  if (checkboxCondition.checked === false) {
+    e.preventDefault;
+    erreurCondition.style.display = "block";
+  } else {
+    erreurCondition.style.display = "none";
+  }
+})
