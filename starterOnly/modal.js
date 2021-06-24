@@ -47,7 +47,7 @@ function CloseModal() {
 }
 
 
-// script pour la validation du formulaire
+  // script pour la validation du formulaire
 
 // création des règles regex
 const regex_formulaire = {
@@ -56,7 +56,7 @@ const regex_formulaire = {
   email: /^([a-z\d\.-]+)@([a-z\d-]+)\.([a-z]+){2,4}$/i,
 }
 
-// Verification des champs et affichage d'une erreur si invalide
+// au clic, verification des champs un par un et affichage d'une erreur si invalide
 buttonSubmit.addEventListener('click', function(e) {
   let i = true;
   if (regex_formulaire.prenom.test(champPrenom.value) === false) {
@@ -91,7 +91,7 @@ buttonSubmit.addEventListener('click', function(e) {
     erreurNaissance.style.display = "none";
   }
 
-  if (champTournois.value < 1) {
+  if (champTournois.value < 0) {
     e.preventDefault;
     erreurTournois.style.display = "block";
     i = false;
