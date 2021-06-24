@@ -91,7 +91,7 @@ buttonSubmit.addEventListener('click', function(e) {
     erreurNaissance.style.display = "none";
   }
 
-  if (champTournois.value < 0) {
+  if (champTournois.value.length === 0) {
     e.preventDefault;
     erreurTournois.style.display = "block";
     i = false;
