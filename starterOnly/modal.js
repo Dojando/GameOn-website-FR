@@ -63,7 +63,21 @@ const regex_formulaire = {
   email: /^([a-z\d\.-]+)@([a-z\d-]+)\.([a-z]+){2,4}$/i,
 }
 
-//fonction pour ecouter les changements sur les champs prenom, nom et email
+// Definition de la date maximal du champ date de naissance a la date d'aujourdhui
+var today = new Date();
+var dd = today.getDate();
+var mm = today.getMonth()+1;
+var yyyy = today.getFullYear();
+if ( dd < 10 ) {
+  dd = '0' + dd
+} 
+if ( mm < 10 ) {
+  mm = '0' + mm
+} 
+today = yyyy + '-' + mm + '-' + dd;
+champNaissance.setAttribute("max", today);
+
+//fonction template pour ecouter les changements sur les champs prenom, nom et email
 function changeListener(champ, regex, erreur) {
   champ.addEventListener('change', function() {
     if (regex.test(champ.value) === false) {
@@ -107,7 +121,7 @@ buttonSubmit.addEventListener('click', function(e) {
   e.preventDefault();
   let i = true;
 
-  // fonction pour verifier les champs prenom, nom et email
+  // fonction template pour verifier les champs prenom, nom et email
   function clickListener(champ, regex, erreur) {
     if (regex.test(champ.value) === false) {
       e.preventDefault();
@@ -135,6 +149,7 @@ buttonSubmit.addEventListener('click', function(e) {
     champNaissance.parentElement.setAttribute('data-error-visible','false');
     erreurNaissance.style.display = "none";
   }
+  console.log(champNaissance.value);
 
   if (champTournois.value.length === 0) {
     e.preventDefault();
