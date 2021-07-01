@@ -15,6 +15,7 @@ const modalClose = document.querySelectorAll(".close");
 const buttonSubmit = document.getElementById('buttonSubmit');
 const formValidation = document.getElementById('form-valid');
 const buttonValidation = document.getElementById('buttonValidation');
+const form = document.getElementById("formulaire");
 
 //Recuperation de chaque champs du formulaire
 const champPrenom = document.getElementById('first');
@@ -50,7 +51,7 @@ function CloseModal() {
 
 // fermeture de la modal de validation
 buttonValidation.addEventListener("click", function() {
-  formValidation.style.display = "none";
+  form.submit();
 })
 
 
@@ -149,7 +150,6 @@ buttonSubmit.addEventListener('click', function(e) {
     champNaissance.parentElement.setAttribute('data-error-visible','false');
     erreurNaissance.style.display = "none";
   }
-  console.log(champNaissance.value);
 
   if (champTournois.value.length === 0) {
     e.preventDefault();
