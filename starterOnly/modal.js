@@ -107,7 +107,7 @@ champNaissance.addEventListener('change', function() {
 })
 
 champTournois.addEventListener('change', function() {
-  if (champTournois.value.length === 0) {
+  if (champTournois.value.length === 0 || champTournois.value < 0) {
     champTournois.parentElement.setAttribute('data-error-visible','true');
     erreurTournois.style.display = "block";
   } else {
@@ -151,7 +151,7 @@ buttonSubmit.addEventListener('click', function(e) {
     erreurNaissance.style.display = "none";
   }
 
-  if (champTournois.value.length === 0) {
+  if (champTournois.value.length === 0 || champTournois.value < 0) {
     e.preventDefault();
     champTournois.parentElement.setAttribute('data-error-visible','true');
     erreurTournois.style.display = "block";
